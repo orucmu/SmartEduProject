@@ -2,7 +2,7 @@
 <header class="top-navbar">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="/">
         <img src="/images/logo.png" alt="" />
       </a>
       <button
@@ -43,7 +43,9 @@
             ></a>
           </li>
           <li>
-            <a class="hover-btn-new log orange" href="register.html"
+            <a
+              class="hover-btn-new log <%= page_name === 'register' && 'orange' %>"
+              href="/register"
               ><span><i class="fa fa-user-plus" aria-hidden="true"></i></span
             ></a>
           </li>
