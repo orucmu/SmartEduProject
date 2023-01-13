@@ -24,7 +24,8 @@ exports.loginUser = (req, res) => {
                 bcrypt.compare(password, user.password, (err, same) => {
                     if (same) {
                         // User Session
-                        res.status(200).send('You are logged in!')
+                        req.session.userID = user._id //userID oluşturmak
+                        res.status(200).redirect('/')
                     }
                 })
             }

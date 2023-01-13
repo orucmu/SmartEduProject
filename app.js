@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session')
 const bodyParser = require('body-parser')
 const pageRoute = require('./routes/pageRoute');
 const courseRoute = require('./routes/courseRoute');
@@ -21,12 +22,24 @@ mongoose.connect('mongodb://localhost/smartedu-db', {
 //Template Engine
 app.set("view engine", "ejs");
 
+//Global Variable
+global.userIN = null;
+
 //Middlewares
 app.use(express.static("public"));
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(session({
+    secret: 'my_keybord_cat',
+    resave: false,
+    saveUninitialized: true,
+}))
 
 //Routes
+app.use('*', (req, res, next) => {
+    userIN = req.session.userID; //userIN'in bir değeri varsa...
+    next();
+});
 app.use('/', pageRoute);
 app.use('/courses', courseRoute);
 app.use('/categories', categoryRoute);
