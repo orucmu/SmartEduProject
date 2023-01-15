@@ -1,14 +1,25 @@
 <%- include('partials/_header') %> <%- include('partials/_navigation') %> <%
-if(user) { %>
+if(user) { %> <% if(user.role === 'student') { %>
+
 <div class="all-title-box">
   <div class="container text-center">
     <h1>
       <%= user.name %>
-      <span class="m_1"> Lorem Ipsum dolroin gravida nibh vel velit. </span>
+      <span class="m_1">Student</span>
     </h1>
   </div>
 </div>
+<% } %> <% if(user.role === 'teacher') { %>
 
+<div class="all-title-box">
+  <div class="container text-center">
+    <h1>
+      <%= user.name %>
+      <span class="m_1">Teacher</span>
+    </h1>
+  </div>
+</div>
+<% } %>
 <div id="overviews" class="section wb">
   <div class="container">
     <div class="row">
